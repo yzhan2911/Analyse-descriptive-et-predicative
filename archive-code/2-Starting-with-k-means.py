@@ -18,7 +18,7 @@ from sklearn import metrics
 # Exemple :  k-Means Clustering
 
 path = './artificial/'
-name="dpb.arff"
+name="flame.arff"
 
 #path_out = './fig/'
 databrut = arff.loadarff(open(path+str(name), 'r'))
@@ -43,6 +43,7 @@ plt.show()
 # Run clustering method for a given number of clusters
 print("------------------------------------------------------")
 print("Appel KMeans pour une valeur de k fixée")
+"""
 k_values = []
 silhouette_scores = []
 inertias = []
@@ -65,7 +66,7 @@ for k in range(2,50):
     silhouette_scores.append(silhouette_avg)
     inertias.append(inertie)
     times.append(tps2 - tps1)
-    print(f"For k={k}, silhouette score={silhouette_avg}, inertia={inertie}, time taken={tps2 - tps1}")
+    print(f"For k={k}, sildonut2houette score={silhouette_avg}, inertia={inertie}, time taken={tps2 - tps1}")
 
 fig, ax1 = plt.subplots(3, 1, figsize=(10, 18))
 
@@ -84,10 +85,10 @@ ax1[2].set_ylabel('Time(ms)')
 ax1[2].grid(True)
 plt.tight_layout()
 plt.show()
-
-k=5
+"""
+k=2
 tps1 = time.time()
-model2= cluster.KMeans(n_clusters=k, init='k-means++', n_init=10)
+model2= cluster.KMeans(n_clusters=k, init='random', n_init=2)
 model2.fit(datanp)
 tps2 = time.time()
 labels = model2.labels_
@@ -105,6 +106,6 @@ print("nb clusters =",k,", nb iter =",iteration, ", inertie = ",inertie, ", runt
 print("labels", labels)
 
 from sklearn.metrics.pairwise import euclidean_distances
-dists = euclidean_distances(centroids)
+dists = euclidean_distances(centroids2)
 print(dists)
 
